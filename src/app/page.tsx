@@ -1,23 +1,47 @@
+import Button from "@/components/ui/Button";
+import StatCard from "@/components/ui/StatCard";
+import MainLayout from "@/components/layout/MainLayout";
+import PageHeader from "@/components/ui/PageHeader";
+
+import { Users, Calendar, Apple, MessageCircle } from "lucide-react";
+
 export default function Home(){
   return(
-    <main className="flex min-h-screen flex-col items-center justify-center bg-slate-100">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-slate-900">
-          Nutrition Saas
-        </h1>
+    <MainLayout>
+      <div className="mx-auto max-w-5xl">
+      <PageHeader
+        title="Pacientes"
+        description="Gestiona todos tus pacientes"
+        />
 
-        <p className="mt-4 text-xl text-slate-600">
-          Software profesional para nutricionistas
-        </p>
+      <Button>Comenzar</Button>
 
-        <button className="mt-10 rounded-2xl bg-blue-600 px-6 py-3 text-white transition hover:bg-blue-700">
-          Comenzar
-        </button>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <StatCard
+          title="Pacientes"
+          value={0}
+          icon={<Users size={28}/>}
+          />
 
-        <p className="mt-6 text-sm text-slate-500">
-          Version 0.1.0
-        </p>
+          <StatCard
+          title="Citas de hoy"
+          value={0}
+          icon={<Calendar size={28}/>}
+          />
+
+          <StatCard
+          title="Dietas"
+          value={0}
+          icon={<Apple size={28}/>}
+          />
+
+          <StatCard
+          title="Mensajes"
+          value={0}
+          icon={<MessageCircle size={28}/>}
+          />
+        </div>
       </div>
-    </main>
+    </MainLayout>
   );
 }
