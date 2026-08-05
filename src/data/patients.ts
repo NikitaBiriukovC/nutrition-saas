@@ -1,4 +1,6 @@
-export const patients = [
+import { Patient } from "@/types/patient";
+
+export const patients: Patient[] = [
     {
         id: 1,
         name: "Juan Perez",

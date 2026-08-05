@@ -4,6 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import { patients } from "@/data/patients";
 import SearchInput from "@/components/ui/SearchInput";
 import { useState } from "react";
+import PatientCard from "@/components/patients/PatientCard";
 
 export default function PatientsPage() {
     const [search, setSearch] = useState("");
@@ -32,23 +33,11 @@ export default function PatientsPage() {
                     </p>
                 )}  
 
-                {filteredPatients.map((patient) =>(
-                    <div
-                    key={patient.id} 
-                    className="rounded-xl border bg-white p-4 shadow-sm"
-                    >
-                        <h2 className="text-lg font-semibold">
-                            {patient.name}
-                        </h2>
-
-                        <p className="text-slate-600">
-                            Edad: {patient.age}
-                        </p>
-
-                        <p className="text-slate-600">
-                            Objetivo: {patient.goal}
-                        </p>
-                    </div>
+                {filteredPatients.map((patient) => (
+                <PatientCard
+                    key={patient.id}
+                    patient={patient}
+                />
                 ))}
             </div>
         </MainLayout>
