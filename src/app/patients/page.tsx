@@ -5,9 +5,18 @@ import { patients } from "@/data/patients";
 import SearchInput from "@/components/ui/SearchInput";
 import { useState } from "react";
 import PatientCard from "@/components/patients/PatientCard";
+import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
+import PatientForm from "@/components/patients/PatientForm";
+import { Patient } from "@/types/patient";
 
 export default function PatientsPage() {
     const [search, setSearch] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleSavePatient = (patient: Patient) => {
+        console.log(patient);
+        setIsModalOpen(false);
+    };
     const filteredPatients = patients.filter((patient) => {
         return patient.name.toLowerCase().includes(search.toLowerCase());
     });
@@ -15,8 +24,12 @@ export default function PatientsPage() {
         <MainLayout>
             <PageHeader
                 title="Pacientes"
-                description="Gestiona todos tus pacientes."
-            />
+                description="Gestiona todos tus pacientes"
+            >
+                <Button onClick={() => setIsModalOpen(true)}>
+                    Nuevo paciente
+                </Button>
+            </PageHeader>
 
             <div className="mb-6">
                 <SearchInput 
@@ -40,6 +53,14 @@ export default function PatientsPage() {
                 />
                 ))}
             </div>
+
+            <Modal
+                isOpen={isModalOpen}
+                title="Nuevo paciente"
+                onClose={() => setIsModalOpen(false)}
+            >
+                <PatientForm onSave={handleSavePatient}/>
+            </Modal>
         </MainLayout>
     )
 }
