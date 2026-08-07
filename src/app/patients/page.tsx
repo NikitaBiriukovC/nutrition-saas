@@ -11,13 +11,20 @@ import PatientForm from "@/components/patients/PatientForm";
 import { Patient } from "@/types/patient";
 
 export default function PatientsPage() {
+    const [patientsList, setPatientsList] = useState(patients);
     const [search, setSearch] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleSavePatient = (patient: Patient) => {
-        console.log(patient);
+        setPatientsList([
+            ...patientsList,
+            {
+                id: Date.now(),
+                ...patient,
+            },
+        ]);
         setIsModalOpen(false);
     };
-    const filteredPatients = patients.filter((patient) => {
+    const filteredPatients = patientsList.filter((patient) => {
         return patient.name.toLowerCase().includes(search.toLowerCase());
     });
     return (

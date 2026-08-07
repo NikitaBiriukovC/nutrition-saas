@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Patient } from "@/types/patient";
+import Button from "../ui/Button";
 
 type PatientFormProps = {
     onSave: (patient: Patient) => void;
@@ -11,7 +12,7 @@ export default function PatientForm({
 }: PatientFormProps) {
     const [patient, setPatient] = useState<Patient>({
         name: "",
-        age: "",
+        age: 0,
         goal: "",
     });
 
@@ -20,6 +21,10 @@ export default function PatientForm({
             ...patient,
             [field]: value,
         });
+    };
+
+    const handleSubmit = () => {
+        onSave(patient);
     };
 
     return (
@@ -70,17 +75,15 @@ export default function PatientForm({
                 />
             </div>
 
-            <p className="text-sm text-slate-500">
-  Nombre: {patient.name}
-</p>
+            <div className="mt-6 flex justify-end gat-3">
+                    <Button variant="secondary">
+                        Cancelar
+                    </Button>
 
-<p className="text-sm text-slate-500">
-  Edad: {patient.age}
-</p>
-
-<p className="text-sm text-slate-500">
-  Objetivo: {patient.goal}
-</p>
+                    <Button onClick={handleSubmit}>
+                        Guardar
+                    </Button>
+            </div>
         </form>
     );
 }
