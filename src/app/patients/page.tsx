@@ -66,7 +66,10 @@ export default function PatientsPage() {
                 title="Nuevo paciente"
                 onClose={() => setIsModalOpen(false)}
             >
-                <PatientForm onSave={handleSavePatient}/>
+                <PatientForm 
+                    onSave={handleSavePatient}
+                    onCancel={() => setIsModalOpen(false)}
+                />
             </Modal>
         </MainLayout>
     )
